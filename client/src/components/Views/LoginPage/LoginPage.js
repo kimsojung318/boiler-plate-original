@@ -1,9 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../../_actions/user_action';
 
-function LoginPage() {
+function LoginPage(props) {
+    const dispatch = useDispatch();
+
+    const [Email, setEmail] = useState("");
+    const [Password, setPassword] = useState("");
+
+    const onEamilHandler = (event) => {
+        setEmail(event.currentTarget.value)
+    }
+
+    const onPasswordHandler = (event) => {
+        setPassword(event.currentTarget.value)
+    }
+
+    const onSubmitHandler = (event) => {
+        event.preventDefault(); // page refresh 방지
+
+        let body = {
+            email: Email,
+            password: Password
+        }
+
+        // Action : loginUser (user_action.js에 생성)
+        dispatch(loginUser(body))
+            .then(response => {
+                if (response.payload.loginSuccess) {
+                    props.history.push('/'); // page 이동
+                } else {
+                    alert('Error');
+                }
+            })
+    }
+
     return (
-        <div>
-            Login
+        <div style={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center',
+            width: '100%', height: '100vh'
+        }}>
+            <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
+                <label>Email</label>
+                <input type="email" value={Email} onChange={onEamilHandler} />
+                <label>password</label>
+                <input type="password" value={Password} onChange={onPasswordHandler} />
+
+                <br />
+
+                <button type="submit">
+                    Login
+                </button>
+            </form>
         </div>
     )
 }
