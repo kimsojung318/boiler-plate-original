@@ -46,7 +46,7 @@ function RegisterPage(props) {
                     props.history.push('/login'); // page 이동
                 } else {
                     alert('Failed to sign up');
-                } // 추후 이미 존재하는 회원일 경우를 추가
+                } // 추후 이미 존재하는 회원일 경우 추가할 것
             })
     }
 
