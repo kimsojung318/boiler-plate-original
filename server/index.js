@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 
 const config = require("./config/key");
 
-const {  auth } = require("./middleware/auth");
+const { auth } = require("./middleware/auth");
 const { User } = require("./models/User");
 
 // bodyParser가 client에서 오는 정보를 서버에서 분석 후 가져올 수 있도록 하기 위해 추가

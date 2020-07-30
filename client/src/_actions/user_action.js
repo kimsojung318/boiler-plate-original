@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {
     LOGIN_USER,
-    REGISTER_USER
+    REGISTER_USER,
+    AUTH_USER
 } from './types';
 
 export function loginUser(dataToSubmit) { // LoginPage.js body를 파라미터로 받아옴
@@ -22,6 +23,16 @@ export function registerUser(dataToSubmit) {
 
     return {
         type: REGISTER_USER,
+        payload: request
+    }
+}
+
+export function auth() { // get은 body 부분 필요X
+    const request = axios.get('/api/users/auth')
+    .then(response => response.data)
+
+    return {
+        type: AUTH_USER,
         payload: request
     }
 }

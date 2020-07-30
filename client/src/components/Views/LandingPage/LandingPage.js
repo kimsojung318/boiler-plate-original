@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom'; // history 사용을 위해 추가
 
 function LandingPage(props) {
 
@@ -34,4 +35,4 @@ function LandingPage(props) {
     )
 }
 
-export default LandingPage
+export default withRouter(LandingPage)
